@@ -22,3 +22,6 @@ go.work
 
 # Local environment configuration 
 .env
+
+# VSCode related files
+.vscode/
