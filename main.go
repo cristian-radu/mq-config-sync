@@ -68,8 +68,9 @@ func main() {
 		mqscPaths, err := discoverMqscFiles(ctx, githubClient, githubRepoOwner, githubRepoName, githubRepoPath, githubRepoRef)
 		if err != nil {
 			log.Error(err)
+		} else {
+			log.Infof("discovered %d mqsc files", len(mqscPaths))
 		}
-		log.Infof("discovered %d mqsc files", len(mqscPaths))
 
 		for _, path := range mqscPaths {
 			readCloser, resp, err := githubClient.Repositories.DownloadContents(ctx, githubRepoOwner, githubRepoName,
@@ -99,10 +100,10 @@ func main() {
 				for _, line := range lastThreeLines {
 					output = output + strings.ToLower(line)
 				}
+				log.Infof("mqsc commands ran successfully, output: %s", output)
 			} else {
 				log.Warnf("unexpected command output: %s", commandOutput)
 			}
-			log.Infof("mqsc commands ran successfully, output: %s", output)
 		}
 
 		time.Sleep(sleep)
