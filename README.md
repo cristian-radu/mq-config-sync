@@ -27,7 +27,6 @@ export QUEUE_MANAGER_NAME=TEST
 
 Run the service and observe the configuration being syncronized periodically
 ```bash
-docker exec -it local-mq bash
 ./mq-config-sync
 ```
 
